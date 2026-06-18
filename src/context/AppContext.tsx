@@ -193,6 +193,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [activeTab, setActiveTab] = useState<string>('landing');
   const [loginRedirectTab, setLoginRedirectTab] = useState<string | null>(null);
   const [googleClientId, setGoogleClientId] = useState<string>(() => {
+    const envId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+    if (envId) return envId;
     const saved = localStorage.getItem('cv_google_client_id');
     if (!saved || saved === '1071239851410-mockid.apps.googleusercontent.com') {
       return '1082732589460-pbbr7dv7cvbae9l6g0t6fjj3fqfdu4p2.apps.googleusercontent.com';
